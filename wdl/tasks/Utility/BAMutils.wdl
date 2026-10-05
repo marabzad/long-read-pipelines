@@ -1409,7 +1409,13 @@ task BamToRelevantPileup {
         fi
 
         rm -f chr*bam chr*bai
-        cat *.mpileup > pileup.mpileup
+        #cat *.mpileup > pileup.mpileup
+        > pileup.mpileup
+        for f in *.mpileup; do
+            cat "${f}" >> pileup.mpileup
+            rm -f "${f}"
+        done
+
     >>>
 
     Int cores = 12
